@@ -832,7 +832,7 @@
     document.querySelectorAll('.btn-whats').forEach(button => {
       button.addEventListener('click', () => {
         const msg = encodeURIComponent(button.getAttribute('data-msg') || "Olá! Gostaria de informações sobre seus serviços.");
-        const numero = '55999818184';
+        const numero = '5533999818184';
         const url = `https://wa.me/${numero}?text=${msg}`;
         window.open(url, '_blank');
       });
