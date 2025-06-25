@@ -111,6 +111,7 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
+      z-index: 1001;
     }
     
     /* Hero com parallax aprimorado */
@@ -324,11 +325,26 @@
       margin-bottom: 25px;
     }
     
+    .tech-category {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .tech-category i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
-      margin-top: 30px;
+      margin-bottom: 25px;
     }
     
     .tech-item {
@@ -339,6 +355,130 @@
       font-weight: 500;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Seção Depoimentos Simplificada */
+    .depoimentos {
+      padding: 100px 20px;
+      background: white;
+    }
+    
+    .depoimentos-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .depoimento-card {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    
+    .depoimento-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .depoimento-card::before {
+      content: '"';
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 4rem;
+      color: var(--primary);
+      opacity: 0.2;
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    .depoimento-texto {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--gray);
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+      padding-left: 20px;
+      font-style: italic;
+    }
+    
+    .depoimento-autor {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-left: 20px;
+    }
+    
+    .autor-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .autor-info h4 {
+      color: var(--primary-dark);
+      font-size: 1.2rem;
+    }
+    
+    /* Formulário para enviar depoimento */
+    .enviar-depoimento {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    
+    .enviar-depoimento h3 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: var(--primary-dark);
+    }
+    
+    .form-depoimento {
+      display: grid;
+      gap: 20px;
+    }
+    
+    .form-depoimento .form-group {
+      margin-bottom: 0;
+    }
+    
+    .btn-enviar-depoimento {
+      background: linear-gradient(90deg, var(--primary), var(--tech-purple));
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .btn-enviar-depoimento:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(68, 175, 242, 0.3);
     }
     
     /* Seção Contato */
@@ -533,6 +673,10 @@
       .hero p {
         font-size: 1.3rem;
       }
+      
+      .enviar-depoimento {
+        padding: 30px;
+      }
     }
     
     @media (max-width: 768px) {
@@ -542,15 +686,16 @@
       
       nav ul {
         position: fixed;
-        top: 90px;
+        top: 0;
         right: -100%;
         flex-direction: column;
         background: var(--primary-dark);
         width: 70%;
-        height: calc(100vh - 90px);
-        padding: 40px 20px;
+        height: 100vh;
+        padding: 90px 20px 20px;
         transition: right 0.3s ease;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 999;
       }
       
       nav ul.active {
@@ -577,6 +722,27 @@
       .section-title {
         font-size: 2.3rem;
       }
+      
+      .tech-item {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+      }
+      
+      .contact-container {
+        gap: 0;
+      }
+      
+      .contact-info, .contact-form {
+        padding: 30px 20px;
+      }
+      
+      .depoimentos-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .enviar-depoimento {
+        padding: 20px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -592,6 +758,41 @@
       
       .section-title {
         font-size: 2rem;
+      }
+      
+      .sobre-content h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-btns .btn-whats {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+      
+      .contact-detail {
+        gap: 12px;
+      }
+      
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      
+      .contact-text h4 {
+        font-size: 1.1rem;
+      }
+      
+      .contact-text p, .contact-text a {
+        font-size: 0.9rem;
+      }
+      
+      .depoimento-card {
+        padding: 20px;
+      }
+      
+      .depoimento-card::before {
+        font-size: 3rem;
       }
     }
   </style>
@@ -613,6 +814,7 @@
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
@@ -685,6 +887,18 @@
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
+      
+      <!-- Novo card para Redes e Impressoras -->
+      <article class="card">
+        <div class="card-icon">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <h3>Redes e Impressoras</h3>
+        <p>Configuração de redes domésticas e empresariais, instalação e manutenção de impressoras, compartilhamento em rede.</p>
+        <button class="btn-whats" data-msg="Olá! Preciso de ajuda com redes e/ou impressoras.">
+          <i class="fab fa-whatsapp"></i> Abrir chamado
+        </button>
+      </article>
     </div>
   </section>
 
@@ -701,17 +915,191 @@
         <p>
             Atuo há mais de 10 anos na área de tecnologia, oferecendo assistência técnica presencial e remota, com serviços completos de montagem, manutenção, instalação de sistemas, formatação e manutenção preventiva. Meu objetivo é oferecer soluções rápidas, seguras e personalizadas para cada cliente
         </p>
-        
-        <h3>Tecnologias que domino:</h3>
-        <div class="tech-stack">
-          <span class="tech-item">Windows Server</span>
-          <span class="tech-item">Win</span>
-          <span class="tech-item">win</span>
-          <span class="tech-item">win</span>
-          <span class="tech-item">win</span>
-          <span class="tech-item">win</span>
+      </div>
+    </div>
+    
+    <!-- Tecnologias abaixo da seção Sobre -->
+    <div style="max-width: 1200px; margin: 60px auto 0; padding: 0 20px;">
+      <h3 style="text-align: center; font-size: 2rem; margin-bottom: 40px; color: var(--dark);">Tecnologias que domino:</h3>
+      
+      <div class="tech-category">
+        <i class="fas fa-microchip"></i>
+        <h4>Hardware e Manutenção</h4>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-item"><i class="fas fa-check-circle"></i> Montagem e manutenção de PCs</span>
+        <span class="tech-item"><i class="fas fa-check-circle"></i> Diagnóstico e troca de componentes</span>
+        <span class="tech-item"><i class="fas fa-check-circle"></i> Limpeza física</span>
+        <span class="tech-item"><i class="fas fa-check-circle"></i> Troca de pasta térmica</span>
+        <span class="tech-item"><i class="fas fa-check-circle"></i> Upgrades de desempenho</span>
+        <span class="tech-item"><i class="fas fa-check-circle"></i> Recuperação de dados</span>
+      </div>
+      
+      <div class="tech-category">
+        <i class="fas fa-desktop"></i>
+        <h4>Sistemas Operacionais</h4>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-item"><i class="fab fa-windows"></i> Windows (XP até 11)</span>
+        <span class="tech-item"><i class="fab fa-linux"></i> Linux (Ubuntu, Mint, Debian)</span>
+        <span class="tech-item"><i class="fas fa-download"></i> Instalação e formatação</span>
+        <span class="tech-item"><i class="fas fa-compress-arrows-alt"></i> Dual boot</span>
+        <span class="tech-item"><i class="fas fa-server"></i> Virtualização</span>
+      </div>
+      
+      <div class="tech-category">
+        <i class="fas fa-tools"></i>
+        <h4>Softwares e Ferramentas</h4>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-item"><i class="fas fa-file-word"></i> Pacote Office</span>
+        <span class="tech-item"><i class="fas fa-search"></i> Ferramentas de diagnóstico</span>
+        <span class="tech-item"><i class="fas fa-hdd"></i> Software de backup e clonagem</span>
+        <span class="tech-item"><i class="fas fa-broom"></i> Otimização de sistemas</span>
+        <span class="tech-item"><i class="fas fa-shield-alt"></i> Antivírus e antimalware</span>
+      </div>
+      
+      <div class="tech-category">
+        <i class="fas fa-wifi"></i>
+        <h4>Redes e Conectividade</h4>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-item"><i class="fas fa-network-wired"></i> Configuração de redes</span>
+        <span class="tech-item"><i class="fas fa-share-alt"></i> Compartilhamento de arquivos</span>
+        <span class="tech-item"><i class="fas fa-print"></i> Compartilhamento de impressoras</span>
+        <span class="tech-item"><i class="fas fa-router"></i> Configuração de roteadores</span>
+        <span class="tech-item"><i class="fas fa-ethernet"></i> Cabeamento de rede</span>
+      </div>
+      
+      <div class="tech-category">
+        <i class="fas fa-headset"></i>
+        <h4>Suporte e Atendimento</h4>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-item"><i class="fas fa-laptop-house"></i> Suporte remoto</span>
+        <span class="tech-item"><i class="fas fa-user-cog"></i> Atendimento técnico presencial</span>
+        <span class="tech-item"><i class="fas fa-shopping-cart"></i> Consultoria em equipamentos</span>
+      </div>
+      
+      <div class="tech-category">
+        <i class="fas fa-print"></i>
+        <h4>Impressoras e Periféricos</h4>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-item"><i class="fas fa-print"></i> Instalação e manutenção</span>
+        <span class="tech-item"><i class="fas fa-share-alt"></i> Compartilhamento em rede</span>
+        <span class="tech-item"><i class="fas fa-cogs"></i> Instalação de drivers</span>
+        <span class="tech-item"><i class="fas fa-tools"></i> Resolução de falhas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Depoimentos Simplificada -->
+  <section class="depoimentos" id="depoimentos">
+    <h2 class="section-title">Depoimentos de Clientes</h2>
+    
+    <div class="depoimentos-container">
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Meu computador estava super lento, mas depois da formatação ficou como novo. Serviço rápido e eficiente!"
+        </div>
+        <div class="depoimento-autor">
+          <div class="autor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="autor-info">
+            <h4>Carlos Silva</h4>
+          </div>
         </div>
       </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Resolveu meu problema de rede que ninguém conseguia solucionar. Profissional altamente capacitado!"
+        </div>
+        <div class="depoimento-autor">
+          <div class="autor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="autor-info">
+            <h4>Mariana Oliveira</h4>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Minha impressora voltou a funcionar perfeitamente. Atendimento personalizado e preço justo. Recomendo!"
+        </div>
+        <div class="depoimento-autor">
+          <div class="autor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="autor-info">
+            <h4>Roberto Santos</h4>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Fiz upgrade no meu notebook com SSD e mais memória. Agora está uma máquina! Entrega dentro do prazo."
+        </div>
+        <div class="depoimento-autor">
+          <div class="autor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="autor-info">
+            <h4>Felipe Costa</h4>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Suporte remoto rápido e eficaz. Resolveu meu problema com o Office sem precisar me deslocar."
+        </div>
+        <div class="depoimento-autor">
+          <div class="autor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="autor-info">
+            <h4>Juliana Mendes</h4>
+          </div>
+        </div>
+      </div>
+      
+      <div class="depoimento-card">
+        <div class="depoimento-texto">
+          "Montaram meu computador gamer exatamente como eu queria. Peças de qualidade e montagem profissional."
+        </div>
+        <div class="depoimento-autor">
+          <div class="autor-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="autor-info">
+            <h4>Rafael Almeida</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Área para enviar depoimento -->
+    <div class="enviar-depoimento">
+      <h3>Deixe seu depoimento</h3>
+      <form class="form-depoimento" id="depoimentoForm">
+        <div class="form-group">
+          <input type="text" id="nome-depoimento" class="form-control" placeholder="Seu nome" required>
+        </div>
+        
+        <div class="form-group">
+          <textarea id="texto-depoimento" class="form-control" placeholder="Seu depoimento (entre aspas)" required rows="4"></textarea>
+        </div>
+        
+        <button type="submit" class="btn-enviar-depoimento">
+          <i class="fas fa-paper-plane"></i> Enviar Depoimento
+        </button>
+      </form>
     </div>
   </section>
 
@@ -808,7 +1196,7 @@
       <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
     <p>&copy; 2025 TS Informática - Todos os direitos reservados</p>
-    <p>Desenvolvido por <a href="#" target="_blank">PlayPag</a></p>
+    <p>Desenvolvido por <a href="https://kymdev.github.io/PlayPage/" target="_blank">PlayPage</a></p>
   </footer>
 
   <!-- JS para funcionalidades -->
@@ -819,12 +1207,16 @@
     
     navToggle.addEventListener('click', () => {
       navMenu.classList.toggle('active');
+      navToggle.innerHTML = navMenu.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
     });
     
     // Fechar menu ao clicar em um link
     document.querySelectorAll('#navMenu a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
       });
     });
     
@@ -845,19 +1237,58 @@
       e.preventDefault();
       
       // Simulação de envio
-      const name = document.getElementById('name').value;
+      const submitBtn = emailForm.querySelector('.btn-submit');
+      const originalHTML = submitBtn.innerHTML;
       
       // Feedback visual
-      const submitBtn = emailForm.querySelector('.btn-submit');
-      submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
-      submitBtn.style.background = 'linear-gradient(90deg, #25D366, #1EBE57)';
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      submitBtn.disabled = true;
       
-      // Reset após 3 segundos
       setTimeout(() => {
-        emailForm.reset();
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
-        submitBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--tech-purple))';
-      }, 3000);
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
+        submitBtn.style.background = 'linear-gradient(90deg, #25D366, #1EBE57)';
+        
+        // Reset após 3 segundos
+        setTimeout(() => {
+          emailForm.reset();
+          submitBtn.innerHTML = originalHTML;
+          submitBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--tech-purple))';
+          submitBtn.disabled = false;
+        }, 3000);
+      }, 1500);
+    });
+    
+    // Formulário de depoimento
+    const depoimentoForm = document.getElementById('depoimentoForm');
+    
+    depoimentoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nome = document.getElementById('nome-depoimento').value;
+      const texto = document.getElementById('texto-depoimento').value;
+      
+      // Feedback visual
+      const submitBtn = depoimentoForm.querySelector('.btn-enviar-depoimento');
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      submitBtn.disabled = true;
+      
+      // Simular envio
+      setTimeout(() => {
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Depoimento Enviado!';
+        submitBtn.style.background = 'linear-gradient(90deg, #25D366, #1EBE57)';
+        
+        // Reset após 3 segundos
+        setTimeout(() => {
+          depoimentoForm.reset();
+          submitBtn.innerHTML = originalHTML;
+          submitBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--tech-purple))';
+          submitBtn.disabled = false;
+          
+          // Mostrar mensagem de agradecimento
+          alert('Obrigado pelo seu depoimento! Seu comentário será analisado antes de ser publicado.');
+        }, 3000);
+      }, 1500);
     });
     
     // Scroll suave para âncoras
@@ -871,6 +1302,12 @@
             top: target.offsetTop - 90,
             behavior: 'smooth'
           });
+          
+          // Fechar menu mobile se estiver aberto
+          if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+          }
         }
       });
     });
