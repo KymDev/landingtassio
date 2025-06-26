@@ -161,6 +161,31 @@
       margin-top: 30px;
     }
     
+    /* Botão âncora estilizado como botão */
+    .btn-ancora {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--tech-purple);
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(142, 43, 226, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      gap: 8px;
+    }
+    
+    .btn-ancora:hover {
+      background: #7a1fd1;
+      box-shadow: 0 7px 18px rgba(122, 31, 209, 0.6);
+      transform: translateY(-3px);
+    }
+    
     /* Seção Serviços */
     .servicos {
       max-width: 1200px;
@@ -832,9 +857,10 @@
         <button class="btn-whats">
           <i class="fab fa-whatsapp"></i> Fale Conosco
         </button>
-        <button class="btn-whats" style="background: var(--tech-purple);">
+        <!-- Alterado para link âncora -->
+        <a href="#servicos" class="btn-ancora">
           <i class="fas fa-laptop"></i> Nossos Serviços
-        </button>
+        </a>
       </div>
     </div>
   </section>
@@ -850,7 +876,7 @@
         </div>
         <h3>Formatação e Otimização</h3>
         <p>Deixe seu computador rápido e seguro com a nossa formatação profissional. Remoção de vírus e instalação de sistemas operacionais atualizados.</p>
-        <button class="btn-whats" data-msg="Olá! Quero um orçamento para formatação e otimização do meu PC.">
+        <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e quero um orçamento para formatação e otimização do meu PC.">
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
@@ -861,7 +887,7 @@
         </div>
         <h3>Limpeza Interna e Manutenção</h3>
         <p>Remoção de poeira e verificação completa para aumentar a vida útil do seu hardware. Prevenção contra superaquecimento.</p>
-        <button class="btn-whats" data-msg="Olá! Preciso de uma limpeza interna e manutenção no meu computador.">
+        <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e preciso de uma limpeza interna e manutenção no meu computador.">
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
@@ -872,7 +898,7 @@
         </div>
         <h3>Troca e Reparo de Peças</h3>
         <p>Diagnóstico e substituição rápida de peças para deixar tudo funcionando perfeitamente. Uso de componentes de qualidade.</p>
-        <button class="btn-whats" data-msg="Olá! Gostaria de agendar troca ou reparo de peças no meu computador.">
+        <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e gostaria de agendar troca ou reparo de peças no meu computador.">
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
@@ -883,7 +909,7 @@
         </div>
         <h3>Instalação de Software</h3>
         <p>Instalamos e configuramos programas essenciais para o seu dia a dia. Pacote Office, antivírus, programas especializados e mais.</p>
-        <button class="btn-whats" data-msg="Olá! Preciso de ajuda com instalação e configuração de softwares.">
+        <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e preciso de ajuda com instalação e configuração de softwares.">
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
@@ -895,7 +921,7 @@
         </div>
         <h3>Redes e Impressoras</h3>
         <p>Configuração de redes domésticas e empresariais, instalação e manutenção de impressoras, compartilhamento em rede.</p>
-        <button class="btn-whats" data-msg="Olá! Preciso de ajuda com redes e/ou impressoras.">
+        <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e preciso de ajuda com redes e/ou impressoras.">
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
@@ -994,7 +1020,7 @@
     </div>
   </section>
 
-  <!-- Seção de Depoimentos Simplificada -->
+  <!-- Seção de Depoimentos  -->
   <section class="depoimentos" id="depoimentos">
     <h2 class="section-title">Depoimentos de Clientes</h2>
     
@@ -1190,10 +1216,9 @@
   <!-- Footer com redes sociais -->
   <footer>
     <div class="social-links">
-      <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/tassiosouzaliborioti?utm_source=qr&igsh=MXVlZ2M5ZmZnd3JiOA==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/16dZ9Z6FfR/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.linkedin.com/in/tassio-souza-b80962371?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     </div>
     <p>&copy; 2025 TS Informática - Todos os direitos reservados</p>
     <p>Desenvolvido por <a href="https://kymdev.github.io/PlayPage/" target="_blank">PlayPage</a></p>
@@ -1223,7 +1248,7 @@
     // Botões WhatsApp
     document.querySelectorAll('.btn-whats').forEach(button => {
       button.addEventListener('click', () => {
-        const msg = encodeURIComponent(button.getAttribute('data-msg') || "Olá! Gostaria de informações sobre seus serviços.");
+        const msg = encodeURIComponent(button.getAttribute('data-msg') || "Olá! Vim através do site da TS Informática e gostaria de informações sobre seus serviços.");
         const numero = '5533999818184';
         const url = `https://wa.me/${numero}?text=${msg}`;
         window.open(url, '_blank');
