@@ -297,6 +297,54 @@
       transform: translateY(-3px);
     }
     
+    /* Seção de Garantias */
+    .garantias {
+      background: linear-gradient(135deg, #eef2f7, #dce7f5);
+      padding: 100px 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .garantias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .garantia-item {
+      text-align: center;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    
+    .garantia-item:hover {
+      transform: translateY(-10px);
+    }
+    
+    .garantia-item i {
+      font-size: 3.5rem;
+      color: var(--primary);
+      margin-bottom: 25px;
+    }
+    
+    .garantia-item h3 {
+      font-size: 1.6rem;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+    
+    .garantia-item p {
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    
     /* Seção Sobre */
     .sobre {
       background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -317,7 +365,7 @@
       flex: 1;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.377);
       transform: rotate(-2deg);
       max-width: 450px;
     }
@@ -617,6 +665,26 @@
       box-shadow: 0 10px 20px rgba(68, 175, 242, 0.3);
     }
     
+    /* Agendamento */
+    .agendamento {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 16px;
+    }
+    
+    .agendamento h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--primary-dark);
+    }
+    
+    .agendamento p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
     /* Footer */
     footer {
       background: linear-gradient(90deg, var(--primary), var(--primary-dark));
@@ -668,6 +736,132 @@
       color: var(--secondary);
     }
     
+    /* Botão de emergência 24h */
+    .emergency-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    
+    .emergency-btn a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, #ff4d4d, #cc0000);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .emergency-btn a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 7px 25px rgba(255, 0, 0, 0.6);
+    }
+    
+    /* Pop-up de Saída melhorado */
+    .exit-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .exit-popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .popup-content {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+      animation: popIn 0.5s ease-out;
+    }
+    
+    @keyframes popIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .close-popup {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray);
+      transition: all 0.3s;
+    }
+    
+    .close-popup:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+    
+    .popup-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+    }
+    
+    .popup-content p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .coupon {
+      background: var(--tech-purple);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      display: inline-block;
+      margin: 10px 0;
+      font-size: 1.3rem;
+    }
+    
+    .popup-btn {
+      margin: 25px 0 15px;
+      width: 100%;
+    }
+    
+    .dont-show-again {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .dont-show-again input {
+      width: 18px;
+      height: 18px;
+    }
+    
     /* Animações */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -683,6 +877,12 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
     
     /* Responsividade */
@@ -701,6 +901,10 @@
       
       .enviar-depoimento {
         padding: 30px;
+      }
+      
+      .garantias-grid {
+        gap: 20px;
       }
     }
     
@@ -768,6 +972,15 @@
       .enviar-depoimento {
         padding: 20px;
       }
+      
+      .emergency-btn a {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .popup-content {
+        padding: 25px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -818,6 +1031,28 @@
       
       .depoimento-card::before {
         font-size: 3rem;
+      }
+      
+      .emergency-btn {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .emergency-btn a {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+      }
+      
+      .popup-content {
+        padding: 20px;
+      }
+      
+      .popup-content h3 {
+        font-size: 1.5rem;
+      }
+      
+      .popup-content p {
+        font-size: 1rem;
       }
     }
   </style>
@@ -925,6 +1160,30 @@
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
+    </div>
+  </section>
+
+  <!-- Seção de Garantias -->
+  <section class="garantias">
+    <div class="container">
+      <h2 class="section-title">Nossa Garantia de Serviço</h2>
+      <div class="garantias-grid">
+        <div class="garantia-item">
+          <i class="fas fa-shield-alt"></i>
+          <h3>30 Dias de Garantia</h3>
+          <p>Todos os serviços têm garantia de 30 dias contra defeitos</p>
+        </div>
+        <div class="garantia-item">
+          <i class="fas fa-lock"></i>
+          <h3>Backup Seguro</h3>
+          <p>Seus dados protegidos antes de qualquer procedimento</p>
+        </div>
+        <div class="garantia-item">
+          <i class="fas fa-tools"></i>
+          <h3>Peças Originais</h3>
+          <p>Utilizamos apenas componentes de qualidade comprovada</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1179,36 +1438,49 @@
       
       <div class="contact-form">
         <h3>Envie sua mensagem</h3>
-        <form id="emailForm">
+        <!-- Formulário configurado para Formspree -->
+        <form id="emailForm" action="https://formspree.io/f/mdkzpvad" method="POST">
+          <!-- Campo oculto para definir o assunto do e-mail -->
+          <input type="hidden" name="_subject" value="Nova mensagem do site TS Informática">
+          
           <div class="form-group">
             <label for="name">Nome Completo</label>
-            <input type="text" id="name" class="form-control" required>
+            <input type="text" id="name" name="name" class="form-control" required>
           </div>
           
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" required>
+            <input type="email" id="email" name="email" class="form-control" required>
           </div>
           
           <div class="form-group">
             <label for="phone">Telefone</label>
-            <input type="tel" id="phone" class="form-control" required>
+            <input type="tel" id="phone" name="phone" class="form-control" required>
           </div>
           
           <div class="form-group">
             <label for="subject">Assunto</label>
-            <input type="text" id="subject" class="form-control" required>
+            <input type="text" id="subject" name="subject" class="form-control" required>
           </div>
           
           <div class="form-group">
             <label for="message">Mensagem</label>
-            <textarea id="message" class="form-control" required></textarea>
+            <textarea id="message" name="message" class="form-control" required></textarea>
           </div>
           
           <button type="submit" class="btn-submit">
             <i class="fas fa-paper-plane"></i> Enviar Mensagem
           </button>
         </form>
+        
+        <!-- Área de agendamento -->
+        <div class="agendamento">
+          <h3>Agendamento Rápido</h3>
+          <p>Clique abaixo para agendar seu atendimento diretamente pelo WhatsApp</p>
+          <button class="btn-whats" id="btnAgendar">
+            <i class="fas fa-calendar-check"></i> Agendar Atendimento
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -1224,7 +1496,34 @@
     <p>Desenvolvido por <a href="https://kymdev.github.io/PlayPage/" target="_blank">PlayPage</a></p>
   </footer>
 
-  <!-- JS para funcionalidades -->
+  <!-- Botão de Emergência 24h -->
+  <div class="emergency-btn">
+    <a href="https://wa.me/5533999818184?text=URGENTE!+Preciso+de+atendimento+técnico+imediato+24h+da+TS+Informática">
+      <i class="fas fa-ambulance"></i>
+      EMERGÊNCIA 24H
+    </a>
+  </div>
+
+  <!-- Pop-up de Saída melhorado -->
+  <div class="exit-popup" id="exitPopup">
+    <div class="popup-content">
+      <button class="close-popup">&times;</button>
+      <h3>Espere! Não vá embora ainda</h3>
+      <p>Oferecemos <strong>10% de desconto</strong> na sua primeira visita!</p>
+      <p>Use o cupom:</p>
+      <div class="coupon">PRIMEIRAVISITA</div>
+      <p>Válido por 30 dias</p>
+      <button class="btn-whats popup-btn">
+        <i class="fab fa-whatsapp"></i> Agendar com Desconto
+      </button>
+      <div class="dont-show-again">
+        <input type="checkbox" id="dontShowAgain">
+        <label for="dontShowAgain">Não mostrar novamente</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS para funcionalidades melhorado -->
   <script>
     // Menu mobile
     const navToggle = document.getElementById('navToggle');
@@ -1255,32 +1554,53 @@
       });
     });
     
-    // Formulário de contato
+    // Formulário de contato usando Formspree
     const emailForm = document.getElementById('emailForm');
     
-    emailForm.addEventListener('submit', (e) => {
+    emailForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Simulação de envio
       const submitBtn = emailForm.querySelector('.btn-submit');
       const originalHTML = submitBtn.innerHTML;
       
-      // Feedback visual
+      // Feedback visual de carregamento
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
       submitBtn.disabled = true;
       
-      setTimeout(() => {
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
-        submitBtn.style.background = 'linear-gradient(90deg, #25D366, #1EBE57)';
+      try {
+        const formData = new FormData(emailForm);
+        const response = await fetch(emailForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
         
-        // Reset após 3 segundos
-        setTimeout(() => {
+        if (response.ok) {
+          // Sucesso
+          submitBtn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
+          submitBtn.style.background = 'linear-gradient(90deg, #25D366, #1EBE57)';
           emailForm.reset();
-          submitBtn.innerHTML = originalHTML;
-          submitBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--tech-purple))';
-          submitBtn.disabled = false;
-        }, 3000);
-      }, 1500);
+        } else {
+          // Erro
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erro no envio');
+        }
+      } catch (error) {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde ou entre em contato pelo WhatsApp.');
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+        return;
+      }
+      
+      // Resetar o botão após 3 segundos
+      setTimeout(() => {
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.style.background = 'linear-gradient(90deg, var(--primary), var(--tech-purple))';
+        submitBtn.disabled = false;
+      }, 3000);
     });
     
     // Formulário de depoimento
@@ -1345,6 +1665,68 @@
       if (hero) {
         hero.style.backgroundPositionY = -scrollPosition * 0.5 + 'px';
       }
+    });
+    
+    // Pop-up de saída melhorado
+    const exitPopup = document.getElementById('exitPopup');
+    const closePopup = document.querySelector('.close-popup');
+    const dontShowAgain = document.getElementById('dontShowAgain');
+    
+    // Verificar se o usuário já optou por não ver o popup
+    if (localStorage.getItem('dontShowPopup') === 'true') {
+      // Não mostrar o popup
+      exitPopup.style.display = 'none';
+    }
+    
+    // Fechar popup e salvar preferência se marcado
+    closePopup.addEventListener('click', () => {
+      exitPopup.classList.remove('active');
+      if (dontShowAgain.checked) {
+        localStorage.setItem('dontShowPopup', 'true');
+      }
+    });
+    
+    // Botão WhatsApp no pop-up
+    document.querySelector('.popup-btn').addEventListener('click', () => {
+      const msg = encodeURIComponent("Olá! Vim pelo site e quero usar o cupom PRIMEIRAVISITA para agendar com 10% de desconto");
+      const url = `https://wa.me/5533999818184?text=${msg}`;
+      window.open(url, '_blank');
+      exitPopup.classList.remove('active');
+      if (dontShowAgain.checked) {
+        localStorage.setItem('dontShowPopup', 'true');
+      }
+    });
+    
+    // Mostrar popup após 10 segundos na primeira visita (se não tiver optado por não ver)
+    setTimeout(() => {
+      if (localStorage.getItem('dontShowPopup') !== 'true') {
+        exitPopup.classList.add('active');
+      }
+    }, 10000); // 10 segundos
+    
+    // Mostrar popup quando o usuário chegar no final da página (90% do scroll)
+    window.addEventListener('scroll', () => {
+      // Se já estiver visível, não faz nada
+      if (exitPopup.classList.contains('active') || localStorage.getItem('dontShowPopup') === 'true') {
+        return;
+      }
+      
+      // Calcular a posição do scrolll
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Verificar se o usuário chegou no final (90%) e ja era 
+      if (scrollPosition + windowHeight >= documentHeight * 0.9) {
+        exitPopup.classList.add('active');
+      }
+    });
+    
+    // Agendamento rápido
+    document.getElementById('btnAgendar').addEventListener('click', () => {
+      const msg = encodeURIComponent("Olá! Gostaria de agendar um atendimento. Por favor informe datas e horários disponíveis.");
+      const url = `https://wa.me/5533999818184?text=${msg}`;
+      window.open(url, '_blank');
     });
   </script>
 </body>
