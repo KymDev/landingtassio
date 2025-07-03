@@ -67,6 +67,12 @@
       padding: 0 20px;
     }
     
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
     .logo-container {
       width: 100px;
       height: 100px;
@@ -81,6 +87,13 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+    
+    .brand-name {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
     
     nav ul {
@@ -124,7 +137,7 @@
       height: 85vh;
       background: 
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+        url('https://i.gifer.com/J4o.gif');
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
@@ -748,6 +761,8 @@
       right: 30px;
       z-index: 1000;
       animation: pulse 2s infinite;
+      cursor: move;
+      user-select: none;
     }
     
     .emergency-btn a {
@@ -762,6 +777,7 @@
       text-decoration: none;
       box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
       transition: all 0.3s ease;
+      cursor: pointer;
     }
     
     .emergency-btn a:hover {
@@ -911,6 +927,10 @@
       .garantias-grid {
         gap: 20px;
       }
+      
+      .brand-name {
+        font-size: 1.5rem;
+      }
     }
     
     @media (max-width: 768px) {
@@ -934,6 +954,10 @@
       
       nav ul.active {
         right: 0;
+      }
+      
+      .brand-name {
+        display: none;
       }
       
       .hero {
@@ -1066,8 +1090,11 @@
   <!-- Header com navegação -->
   <header>
     <div class="header-container">
-      <div class="logo-container">
-        <img src="icone.jpg" alt="TS Informática" class="logo" />
+      <div class="brand-container">
+        <div class="logo-container">
+          <img src="icone.jpg" alt="TS Informática" class="logo" />
+        </div>
+        <h1 class="brand-name">TS Informática</h1>
       </div>
       
       <button class="nav-btn" id="navToggle">
@@ -1154,7 +1181,7 @@
         </button>
       </article>
       
-      <!-- Novo card para Redes e Impressoras -->
+      <!-- Card para Redes e Impressoras -->
       <article class="card">
         <div class="card-icon">
           <i class="fas fa-network-wired"></i>
@@ -1162,6 +1189,18 @@
         <h3>Redes e Impressoras</h3>
         <p>Configuração de redes domésticas e empresariais, instalação e manutenção de impressoras, compartilhamento em rede.</p>
         <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e preciso de ajuda com redes e/ou impressoras.">
+          <i class="fab fa-whatsapp"></i> Abrir chamado
+        </button>
+      </article>
+      
+      <!-- Novo card para Montagem de PC Gamer -->
+      <article class="card">
+        <div class="card-icon">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <h3>Montagem de PC Gamer</h3>
+        <p>Computadores personalizados para jogos de alto desempenho. Escolha os melhores componentes e montamos para você.</p>
+        <button class="btn-whats" data-msg="Olá! Vim através do site da TS Informática e quero informações sobre montagem de PC Gamer.">
           <i class="fab fa-whatsapp"></i> Abrir chamado
         </button>
       </article>
@@ -1502,7 +1541,7 @@
   </footer>
 
   <!-- Botão de Emergência 24h -->
-  <div class="emergency-btn">
+  <div class="emergency-btn" id="emergencyBtn">
     <a href="https://wa.me/5533999818184?text=URGENTE!+Preciso+de+atendimento+técnico+imediato+24h+da+TS+Informática">
       <i class="fas fa-ambulance"></i>
       EMERGÊNCIA 24H
@@ -1733,6 +1772,73 @@
       const url = `https://wa.me/5533999818184?text=${msg}`;
       window.open(url, '_blank');
     });
+
+    // Funcionalidade de arrastar para o botão de emergência
+    const emergencyBtn = document.getElementById('emergencyBtn');
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    emergencyBtn.addEventListener("mousedown", dragStart);
+    emergencyBtn.addEventListener("touchstart", dragStart);
+    
+    function dragStart(e) {
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+      
+      if (e.target === emergencyBtn || e.target.parentNode === emergencyBtn) {
+        isDragging = true;
+        
+        // Adiciona eventos de movimento e fim
+        document.addEventListener("mousemove", drag);
+        document.addEventListener("touchmove", drag);
+        document.addEventListener("mouseup", dragEnd);
+        document.addEventListener("touchend", dragEnd);
+      }
+    }
+    
+    function drag(e) {
+      if (isDragging) {
+        e.preventDefault();
+        
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initialX;
+          currentY = e.touches[0].clientY - initialY;
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+        }
+        
+        xOffset = currentX;
+        yOffset = currentY;
+        
+        setTranslate(currentX, currentY, emergencyBtn);
+      }
+    }
+    
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+    
+
+    function dragEnd() {
+      isDragging = false;
+      
+      // Remove eventos de movimento e fim
+      document.removeEventListener("mousemove", drag);
+      document.removeEventListener("touchmove", drag);
+      document.removeEventListener("mouseup", dragEnd);
+      document.removeEventListener("touchend", dragEnd);
+    }
   </script>
 </body>
 </html>
