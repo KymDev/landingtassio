@@ -754,15 +754,21 @@
       color: var(--secondary);
     }
     
-    /* Botão de emergência 24h */
+    /* Botão de emergência 24h - MODIFICADO PARA ARRASTÁVEL */
     .emergency-btn {
       position: fixed;
       bottom: 30px;
       right: 30px;
       z-index: 1000;
       animation: pulse 2s infinite;
-      cursor: move;
+      cursor: grab;
       user-select: none;
+      touch-action: none;
+    }
+    
+    .emergency-btn.dragging {
+      animation: none;
+      cursor: grabbing;
     }
     
     .emergency-btn a {
@@ -776,12 +782,10 @@
       font-weight: 700;
       text-decoration: none;
       box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      transition: box-shadow 0.3s ease;
     }
     
     .emergency-btn a:hover {
-      transform: scale(1.05);
       box-shadow: 0 7px 25px rgba(255, 0, 0, 0.6);
     }
     
@@ -1540,7 +1544,7 @@
     <p>Desenvolvido por <a href="https://kymdev.github.io/PlayPage/" target="_blank">PlayPage</a></p>
   </footer>
 
-  <!-- Botão de Emergência 24h -->
+  <!-- Botão de Emergência 24h ARRASTÁVEL -->
   <div class="emergency-btn" id="emergencyBtn">
     <a href="https://wa.me/5533999818184?text=URGENTE!+Preciso+de+atendimento+técnico+imediato+24h+da+TS+Informática">
       <i class="fas fa-ambulance"></i>
@@ -1773,72 +1777,93 @@
       window.open(url, '_blank');
     });
 
-    // Funcionalidade de arrastar para o botão de emergência
+    // ===== FUNCIONALIDADE DE ARRASTAR PARA O BOTÃO DE EMERGÊNCIA =====
     const emergencyBtn = document.getElementById('emergencyBtn');
     let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
-    let xOffset = 0;
-    let yOffset = 0;
-
-    emergencyBtn.addEventListener("mousedown", dragStart);
-    emergencyBtn.addEventListener("touchstart", dragStart);
+    let offsetX, offsetY;
     
-    function dragStart(e) {
-      if (e.type === "touchstart") {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-      } else {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-      }
+    // Função para iniciar o arrasto
+    function startDrag(e) {
+      isDragging = true;
+      emergencyBtn.classList.add('dragging');
       
-      if (e.target === emergencyBtn || e.target.parentNode === emergencyBtn) {
-        isDragging = true;
-        
-        // Adiciona eventos de movimento e fim
-        document.addEventListener("mousemove", drag);
-        document.addEventListener("touchmove", drag);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("touchend", dragEnd);
-      }
+      // Determinar se é um evento de toque ou mouse
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      
+      // Calcular a posição do cursor em relação ao elemento
+      const rect = emergencyBtn.getBoundingClientRect();
+      offsetX = clientX - rect.left;
+      offsetY = clientY - rect.top;
+      
+      // Alterar o cursor para "grabbing"
+      emergencyBtn.style.cursor = 'grabbing';
     }
     
+    // Função para arrastar o elemento
     function drag(e) {
+      if (!isDragging) return;
+      
+      e.preventDefault();
+      
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      
+      // Calcular nova posição
+      const x = clientX - offsetX;
+      const y = clientY - offsetY;
+      
+      // Limitar à área da janela
+      const maxX = window.innerWidth - emergencyBtn.offsetWidth;
+      const maxY = window.innerHeight - emergencyBtn.offsetHeight;
+      
+      // Aplicar posição com limites
+      emergencyBtn.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+      emergencyBtn.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+    }
+    
+    // Função para parar o arrasto
+    function stopDrag() {
+      isDragging = false;
+      emergencyBtn.classList.remove('dragging');
+      emergencyBtn.style.cursor = 'grab';
+      
+      // Salvar posição
+      localStorage.setItem('btnPosition', JSON.stringify({
+        left: emergencyBtn.style.left,
+        top: emergencyBtn.style.top
+      }));
+    }
+    
+    // Adicionar eventos de início de arrasto
+    emergencyBtn.addEventListener('mousedown', startDrag);
+    emergencyBtn.addEventListener('touchstart', startDrag);
+    
+    // Adicionar eventos de movimento
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag);
+    
+    // Adicionar eventos de fim de arrasto
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchend', stopDrag);
+    
+    // Prevenir abertura acidental do link ao arrastar
+    emergencyBtn.querySelector('a').addEventListener('click', function(e) {
       if (isDragging) {
         e.preventDefault();
-        
-        if (e.type === "touchmove") {
-          currentX = e.touches[0].clientX - initialX;
-          currentY = e.touches[0].clientY - initialY;
-        } else {
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
-        }
-        
-        xOffset = currentX;
-        yOffset = currentY;
-        
-        setTranslate(currentX, currentY, emergencyBtn);
       }
-    }
+    });
     
-    function setTranslate(xPos, yPos, el) {
-      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-    }
-    
-
-    function dragEnd() {
-      isDragging = false;
-      
-      // Remove eventos de movimento e fim
-      document.removeEventListener("mousemove", drag);
-      document.removeEventListener("touchmove", drag);
-      document.removeEventListener("mouseup", dragEnd);
-      document.removeEventListener("touchend", dragEnd);
-    }
+    // Restaurar posição do localStorage ao carregar a página
+    window.addEventListener('load', () => {
+      const savedPosition = localStorage.getItem('btnPosition');
+      if (savedPosition) {
+        const position = JSON.parse(savedPosition);
+        emergencyBtn.style.left = position.left;
+        emergencyBtn.style.top = position.top;
+        emergencyBtn.style.position = 'fixed';
+      }
+    });
   </script>
 </body>
 </html>
