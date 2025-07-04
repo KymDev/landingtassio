@@ -754,7 +754,7 @@
       color: var(--secondary);
     }
     
-    /* Botão de emergência 24h - MODIFICADO PARA ARRASTÁVEL */
+    /* Botão de emergência 24h - MODIFICADO PARA MANTER TAMANHO */
     .emergency-btn {
       position: fixed;
       bottom: 30px;
@@ -764,13 +764,16 @@
       cursor: grab;
       user-select: none;
       touch-action: none;
+      /* Mantém o tamanho fixo */
+      width: max-content;
+      height: auto;
     }
-    
+
     .emergency-btn.dragging {
       animation: none;
       cursor: grabbing;
     }
-    
+
     .emergency-btn a {
       display: flex;
       align-items: center;
@@ -783,8 +786,11 @@
       text-decoration: none;
       box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
       transition: box-shadow 0.3s ease;
+      /* Mantém o tamanho constante */
+      min-width: 200px;
+      justify-content: center;
     }
-    
+
     .emergency-btn a:hover {
       box-shadow: 0 7px 25px rgba(255, 0, 0, 0.6);
     }
@@ -1006,13 +1012,16 @@
         padding: 20px;
       }
       
+      /* Botão de emergência em dispositivos móveis */
+      .emergency-btn {
+        bottom: 20px !important;
+        right: 20px !important;
+      }
+      
       .emergency-btn a {
         padding: 12px 20px;
         font-size: 0.9rem;
-      }
-      
-      .popup-content {
-        padding: 25px;
+        min-width: 180px;
       }
     }
     
@@ -1074,6 +1083,7 @@
       .emergency-btn a {
         padding: 10px 15px;
         font-size: 0.8rem;
+        min-width: 160px;
       }
       
       .popup-content {
@@ -1777,7 +1787,7 @@
       window.open(url, '_blank');
     });
 
-    // ===== FUNCIONALIDADE DE ARRASTAR PARA O BOTÃO DE EMERGÊNCIA =====
+    // ===== FUNCIONALIDADE DE ARRASTAR ATUALIZADA =====
     const emergencyBtn = document.getElementById('emergencyBtn');
     let isDragging = false;
     let offsetX, offsetY;
@@ -1862,6 +1872,10 @@
         emergencyBtn.style.left = position.left;
         emergencyBtn.style.top = position.top;
         emergencyBtn.style.position = 'fixed';
+      } else {
+        // Posição padrão se não houver salva
+        emergencyBtn.style.bottom = '30px';
+        emergencyBtn.style.right = '30px';
       }
     });
   </script>
